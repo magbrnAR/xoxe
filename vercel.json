@@ -1,0 +1,26 @@
+{
+  "builds": [
+    {
+      "src": "vercel_app/wsgi.py",
+      "use": "@vercel/python",
+      "config":{"runtime":"python3.9"}
+    },
+    {
+      "src" : "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir":"staticfiles build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "mychat/wsgi.py"
+    }
+  ]
+}
